@@ -22,12 +22,14 @@ If you find our work useful, please consider citing:
 The models are free for non-commercial and scientific research purpose. Please mail us for further licensing terms.
 
 ## References
-The optic flow estimation code is based on [sniklaus/pytorch-spynet](https://github.com/sniklaus/pytorch-spynet). The original paper is 
+1. The optic flow estimation code is based on [sniklaus/pytorch-spynet](https://github.com/sniklaus/pytorch-spynet). The original paper is 
 ```
-[1]  @inproceedings{Ranjan_CVPR_2017,
-         author = {Ranjan, Anurag and Black, Michael J.},
-         title = {Optical Flow Estimation Using a Spatial Pyramid Network},
-         booktitle = {IEEE Conference on Computer Vision and Pattern Recognition},
-         year = {2017}
-     }
+@inproceedings{Ranjan_CVPR_2017,
+    author = {Ranjan, Anurag and Black, Michael J.},
+    title = {Optical Flow Estimation Using a Spatial Pyramid Network},
+    booktitle = {IEEE Conference on Computer Vision and Pattern Recognition},
+    year = {2017}
+}
+
+2. The code for intra compression and residual compression is based on [mlomnitz/DiffJPEG](https://github.com/mlomnitz/DiffJPEG).
 ```
