@@ -31,5 +31,5 @@ The models are free for non-commercial and scientific research purpose. Please m
     year = {2017}
 }
 
-2. The code for intra compression and residual compression is based on [mlomnitz/DiffJPEG](https://github.com/mlomnitz/DiffJPEG).
 ```
+2. The code for intra compression and residual compression is based on [mlomnitz/DiffJPEG](https://github.com/mlomnitz/DiffJPEG).
