@@ -4,7 +4,7 @@
 **Yulin Zhang, Jiangqun Ni, Wenkang Su, and Xin Liao**
 
 ## Introduction
-This repository is a code release for the paper found [here](https://dl.acm.org/doi/pdf/10.1145/3581783.3612270). The paper focus on deep video watermarking with temporal robustness and invisibility. The main contributions are the proposed temporal-associated feature extraction block (TAsBlock),  differentiable video compression simulator(DiffH264), and spatial/temporal mask loss.
+This repository is a code release for the paper found [here](https://doi.org/10.1145/3581783.3612270). The paper focus on deep video watermarking with temporal robustness and invisibility. The main contributions are the proposed temporal-associated feature extraction block (TAsBlock),  differentiable video compression simulator(DiffH264), and spatial/temporal mask loss.
 
 ## Citation
 If you find our work useful, please consider citing:
