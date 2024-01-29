@@ -10,7 +10,7 @@ class Encoder(nn.Module):
             nn.Linear(msgbitnum, 3*4*(videoshape[1]//8)*(videoshape[2]//8)), nn.LeakyReLU(inplace=True)
         )
         self.msg_up = nn.Upsample(scale_factor=(2,8,8))
-        self.tasblock = TAsBlock(framenum=videoshape[0])
+        self.tasblock = TAsBlock(framenum=videoshape[0], enable=False)
         self.up = nn.Upsample(scale_factor=(2,2,2), mode='nearest')
         self.conv1 = nn.Sequential(nn.Conv3d(9, 16, 3, stride=1, padding=1), nn.LeakyReLU(inplace=True))
         self.conv2 = nn.Sequential(nn.Conv3d(16, 32, 3, stride=2, padding=1), nn.LeakyReLU(inplace=True), nn.Conv3d(32, 32, 3, stride=1, padding=1), nn.LeakyReLU(inplace=True))
@@ -37,7 +37,7 @@ class Encoder(nn.Module):
 class Decoder(nn.Module):
     def __init__(self, msgbitnum, videoshape):
         super().__init__()
-        self.tasblock = TAsBlock(framenum=videoshape[0])
+        self.tasblock = TAsBlock(framenum=videoshape[0], enable=False)
         self.decoder1 = nn.Sequential(
             nn.Conv3d(6, 16, 3, stride=(1,2,2), padding=1), nn.LeakyReLU(inplace=True),
             nn.Conv3d(16, 32, 3, stride=(1,2,2), padding=1), nn.LeakyReLU(inplace=True),
