@@ -15,6 +15,14 @@ def weight_init(m):
         if m.bias is not None: m.bias.data.zero_()
 
 
+def maskloss(stego, cover, alpha):
+    residual = (stego - cover) / alpha
+    mask = framenorm(spacialmask(cover).mean(dim=1,keepdim=True).clamp(0, 3)).detach()
+    s_loss = torch.nn.functional.relu(torch.abs(residual) - mask).pow(2).mean()
+    t_loss = torch.nn.functional.relu(torch.abs(stego[:,:,:-1] - stego[:,:,1:]) - torch.abs(cover[:,:,:-1] - cover[:,:,1:]).mean(dim=1,keepdim=True).detach()).pow(2).mean()
+    return 200*s_loss + 5*t_loss
+
+
 def train():
     parser = argparse.ArgumentParser()
     args = parser.parse_args()
