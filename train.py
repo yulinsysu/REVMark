@@ -15,6 +15,20 @@ def weight_init(m):
         if m.bias is not None: m.bias.data.zero_()
 
 
+def spacialmask(cover):
+    shape = cover.shape
+    cover = cover.reshape(shape[0],-1,shape[3],shape[4])
+    groups = cover.shape[1]
+
+    kernel_x = torch.Tensor([[[[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]]]]).to(cover.device).repeat(groups,1,1,1)
+    kernel_y = torch.Tensor([[[[-1,-2,-1], [ 0, 0, 0], [ 1, 2, 1]]]]).to(cover.device).repeat(groups,1,1,1)
+
+    cover_pad = torch.nn.ReplicationPad2d(padding=(1,1,1,1))(cover)
+    grad_x = torch.nn.functional.conv2d(cover_pad, kernel_x, groups=groups)
+    grad_y = torch.nn.functional.conv2d(cover_pad, kernel_y, groups=groups)
+    grad_mask = torch.abs(grad_x) + torch.abs(grad_y)
+    return grad_mask.reshape(*shape)
+
 def maskloss(stego, cover, alpha):
     residual = (stego - cover) / alpha
     mask = framenorm(spacialmask(cover).mean(dim=1,keepdim=True).clamp(0, 3)).detach()
